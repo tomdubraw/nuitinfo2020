@@ -1,0 +1,13 @@
+// usefull in IDE to show the right info
+@import "vars";
+
+// Sass bootstrap function that build an array of colors use to generate component like btn-key with bg-color: $value
+$theme-colors: (
+        "primary": $primary,
+        "dark": $dark
+);
+
+$body-bg: $dark;
+$body-color: #fff;
+$border-radius: 0.6em;
+//$font-family-base: poppins, $font-family-sans-serif !default;
