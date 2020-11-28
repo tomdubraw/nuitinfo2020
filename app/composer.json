@@ -10,6 +10,7 @@
         "doctrine/doctrine-bundle": "^2.2",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.7",
+        "fakerphp/faker": "^1.12",
         "phpdocumentor/reflection-docblock": "^5.2",
         "phpmd/phpmd": "^2.9",
         "sensio/framework-extra-bundle": "^5.1",
@@ -42,6 +43,7 @@
         "twig/twig": "^2.12|^3.0"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "friendsofphp/php-cs-fixer": "^2.16",
         "phpro/grumphp": "^1.2",
         "squizlabs/php_codesniffer": "^3.5",
@@ -91,7 +93,7 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "db": "bin/console doctrine:database:drop --force && bin/console d:d:c && bin/console d:s:u -f","_c":" && bin/console d:f:l -n",
+        "db": "bin/console doctrine:database:drop --force && bin/console d:d:c && bin/console d:s:u -f && bin/console d:f:l -n",
         "cs": "./vendor/bin/php-cs-fixer fix"
     },
     "conflict": {
