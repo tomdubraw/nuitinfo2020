@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+
+        <div class="row font-weight-bold my-5">
+            <div class="col-sm-3">
+                Email
+            </div>
+            <div class="col-sm-3">
+                Username
+            </div>
+            <div class="col-sm-3">
+                Fullname
+            </div>
+            <div class="col-sm-3">
+                Roles
+            </div>
+        </div>
+
+        {% for user in users %}
+            <div class="row">
+                <div class="col-sm-3">
+                    {{ user.email }}
+                </div>
+                <div class="col-sm-3">
+                    {{ user.nickname }}
+                </div>
+                <div class="col-sm-3">
+                    {{ user.firstname }}
+                    {{ user.lastname }}
+                </div>
+                <div class="col-sm-3">
+                    [ {{ user.roles|join(', ') }} ]
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+
+        <div class="row justify-content-center mb-5">
+            {{ knp_pagination_render(users) }}
+        </div>
+
+    </div>
+
+{% endblock %}
