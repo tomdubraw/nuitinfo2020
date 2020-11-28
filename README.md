@@ -9,4 +9,4 @@
 
 ### accès via container
 - composer (require et run notamment)
-- yarn (build en prod, )
+- yarn (build en prod, dev et watch en dev)
