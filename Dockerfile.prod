@@ -1,0 +1,10 @@
+FROM composer as deps
+
+COPY ./app/composer.* /app
+RUN cd /app && composer install
+
+FROM php:7.4-fpm-alpine
+
+RUN docker-php-ext-install pdo_mysql
+COPY ./app /app
+COPY --from=deps /app/vendor /app/vendor

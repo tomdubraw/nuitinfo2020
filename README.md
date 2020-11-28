@@ -1,12 +1,23 @@
-# Notes pour clément
+## Install
 
-## Needs
-### services
-- Nginx
-- php7.4
-- traefik ?
-- mysql
+```sh
+# Install composer
+docker run --rm -it -v "$PWD"/app:/app composer install
+# run server
+docker-compose up -d
+```
 
-### accès via container
-- composer (require et run notamment)
-- yarn (build en prod, dev et watch en dev)
+Server at http://localhost:8080
+Adminer at http://localhost:8081
+MySQL on port 8082
+
+> uncomment `command: watch` in `docker-compose.yml` for encore watch
+
+### reset db
+```sh
+docker run --rm -it -v "$PWD"/app:/app composer db
+```
+
+## Prod
+
+> TODO: config docker for prod
