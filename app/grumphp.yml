@@ -9,6 +9,8 @@ grumphp:
             keywords:
                 - "die("
                 - "var_dump("
+                - "dd("
+                - "dump("
                 - "exit;"
             whitelist_patterns: []
             triggered_by: ['php']
