@@ -17,4 +17,4 @@ MySQL on port 8082
 
 ## Prod
 
-> TODO: config docker for prod
+use `docker-compose.prod.yml`

@@ -2,7 +2,10 @@ version: "3"
 
 services:
   php:
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      target: php
     user: 1000:1000
     volumes: 
       - ./app:/app
@@ -30,7 +33,8 @@ services:
   yarn:
     build:
       context: .
-      dockerfile: encore.Dockerfile
+      dockerfile: Dockerfile
+      target: yarn
     user: 1000:1000
     #command: watch
     volumes: 
