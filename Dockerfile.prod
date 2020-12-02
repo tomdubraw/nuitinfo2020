@@ -8,7 +8,6 @@ RUN yarn install
 COPY ./app/webpack.config.js ./
 COPY ./app/assets/ ./assets/
 
-RUN ls
 RUN yarn build
 
 FROM php:7.4-fpm-alpine as php
@@ -25,6 +24,7 @@ RUN composer install
 
 COPY --from=yarn /app/public/build ./public/build
 COPY ./app ./
+RUN php bin/console cache:clear
 
 FROM nginx:alpine as nginx
 
