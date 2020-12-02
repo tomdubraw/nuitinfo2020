@@ -3,9 +3,9 @@
 ```sh
 # run server
 docker-compose up -d
-# Install composer
+# Install php vendor
 docker-compose exec php composer install
-# load db
+# reacreate database and load fixtures
 docker-compose exec php composer db
 ```
 
