@@ -1,3 +1,5 @@
 FROM php:7.4-fpm-alpine
 WORKDIR /app
-RUN docker-php-ext-install pdo_mysql && apk add --no-cache composer
+RUN apk add --no-cache composer icu-dev \
+ && docker-php-ext-configure intl \
+ && docker-php-ext-install pdo_mysql intl
