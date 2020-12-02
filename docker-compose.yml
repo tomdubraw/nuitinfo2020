@@ -3,6 +3,7 @@ version: "3"
 services:
   php:
     build: .
+    user: 1000:1000
     volumes: 
       - ./app:/app
   
@@ -17,7 +18,7 @@ services:
   db:
     image: mysql
     volumes: 
-      - ./.db:/var/lib/mysql
+      - database:/var/lib/mysql
     ports:
       - 8082:3306
     environment:
@@ -30,6 +31,7 @@ services:
     build:
       context: .
       dockerfile: encore.Dockerfile
+    user: 1000:1000
     #command: watch
     volumes: 
       - ./app/webpack.config.js:/app/webpack.config.js:ro
@@ -42,3 +44,6 @@ services:
       - 8081:8080
     environment:
       ADMINER_DESIGN: pepa-linha
+
+volumes:
+  database:
