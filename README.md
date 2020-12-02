@@ -5,7 +5,7 @@
 docker-compose up -d
 # Install php vendor
 docker-compose exec php composer install
-# reacreate database and load fixtures
+# Recreate database and load fixtures
 docker-compose exec php composer db
 ```
 
