@@ -2,20 +2,24 @@
 
 ```sh
 # run server
-docker-compose up -d
+$ docker-compose up -d
+
 # Install php vendor
-docker-compose exec php composer install
+$ docker-compose exec php composer install
+
 # Recreate database and load fixtures
-docker-compose exec php composer db
+$ docker-compose exec php composer db
 ```
 
-Server at http://localhost:8080
-Adminer at http://localhost:8081
-MySQL on port 8082
+- Server at http://localhost:8080 to access the projet through your web browser
+- Adminer at http://localhost:8081 to manage the database through a web browser
+- MySQL at http://localhost:8082 to use any database client
 
-> uncomment `command: watch` in `docker-compose.yml` for encore watch
+> uncomment `command: watch` in `docker-compose.yml` to start the encore webpack watch server
 
 ## IDE and env Config
+
+Have Php locally is useful to run quality tools through your IDE and run the git hook
 
 Use PhpStorm is recommended
 
@@ -23,6 +27,8 @@ Required PhpStorm plugin
 - Symfony support
 - Php annotation
 - Php toolbox
+- GitToolBox
+- Git Extender (Use `alt + t` will update and pull all your branches)
 
 Theme plugin
 - Material theme ui
@@ -39,7 +45,20 @@ PhpStorm Configuration
         - Php
             - CS Fixer : ruleset Symfony
             - Code sniffer : ruleset PSR-12
+- Keymap (set your personal keyboard shortcuts like those)
+    - Move line
+    - Go to end of line
+    - Duplicate line
+    - Remove line
+    - Search into files
+    - Search a file/class
 
+
+## Notice
+
+- A git hook prevent commit of any `dump()` / `die()` / etc and any Php class that do not respect the PSR-12 ruleset
+- Target your pull request into `dev`
+- Avoid to push into `master` and `dev`
 
 
 ## Prod
