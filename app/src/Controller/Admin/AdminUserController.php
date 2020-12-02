@@ -16,7 +16,7 @@ class AdminUserController extends AbstractController
     public function index(UserRepository $repository, PaginatorInterface $paginator, $page = 1): Response
     {
         $pagination = $paginator->paginate(
-            $repository->createQueryBuilder('u')->orderBy('u.id')->getQuery(),
+            $repository->getUserQuery(),
             $page,
             15
         );
