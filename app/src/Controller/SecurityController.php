@@ -42,11 +42,4 @@ class SecurityController extends AbstractController
         throw new \LogicException('This method can be blank - it will be intercepted by your firewall.');
     }
 
-    /**
-     * @Route("/windy", name="app_windyCarte")
-     */
-    public function windyRoute()
-    {
-        return $this->render('windyCarte/windyCarteFull.html.twig');
-    }
 }
