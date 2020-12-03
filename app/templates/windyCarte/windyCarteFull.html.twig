@@ -10,17 +10,6 @@
 
 {% block title %}Ma grande carte!{% endblock %}
 
-{% block stylesheets %}
-    <link rel="stylesheet">
-    <style>
-        #windy {
-            width: 100%;
-            height: 900px;
-            /*J'arrive pas à mettre le height */
-        }
-    </style>
-{% endblock %}
-
 {% block scriptlink%}
 {#    Imports pour la carte, les deux sont néccéssaires#}
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
@@ -30,7 +19,7 @@
 {% block body %}
 <div class="container-fluid bg-white">
     <div class="row">
-        <div class="col" id="windy"></div>
+        <div id="windy" class="col"></div>
         {{ encore_entry_script_tags('windy') }}
     </div>
 </div>
