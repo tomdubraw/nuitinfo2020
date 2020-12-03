@@ -35,19 +35,14 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\OneToOne(targetEntity=Organization::class, inversedBy="user", cascade={"persist", "remove"})
      */
-    private $nickname;
+    private $organization;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\OneToOne(targetEntity=Watterman::class, inversedBy="user", cascade={"persist", "remove"})
      */
-    private $firstname;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $lastname;
+    private $waterman;
 
     public function getId(): ?int
     {
@@ -127,38 +122,26 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function getNickname(): string
+    public function getOrganization(): ?Organization
     {
-        return $this->nickname;
+        return $this->organization;
     }
 
-    public function setNickname(string $nickname): self
+    public function setOrganization(?Organization $organization): self
     {
-        $this->nickname = $nickname;
+        $this->organization = $organization;
 
         return $this;
     }
 
-    public function getFirstname(): ?string
+    public function getWaterman(): ?Watterman
     {
-        return $this->firstname;
+        return $this->waterman;
     }
 
-    public function setFirstname(string $firstname): self
+    public function setWaterman(?Watterman $waterman): self
     {
-        $this->firstname = $firstname;
-
-        return $this;
-    }
-
-    public function getLastname(): ?string
-    {
-        return $this->lastname;
-    }
-
-    public function setLastname(string $lastname): self
-    {
-        $this->lastname = $lastname;
+        $this->waterman = $waterman;
 
         return $this;
     }
