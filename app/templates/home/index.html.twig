@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <div class="p-3 container-fluid border col-sm-6 col-lg-5 mt-5" style="height: 20em" >
+        <div class="row mt-2">
+            <div class = "col-1"></div>
+            <div class = "col-10">
+                <a href="{{ path('app_login') }}" type="button" class="btn btn-light btn-block mb-5 mt-5" >Connexion</a>
+                <a href="{{ path('app_signin') }}" type="button" class="btn btn-light btn-block" >Inscription</a>
+            </div>
+            <div class = "col-1"></div>
+        </div>
+    </div>
+{% endblock %}
