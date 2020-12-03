@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
+        {% block meta %}
+            <meta charset="UTF-8">
+        {% endblock %}
         <title>{% block title %}My App{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
+        {% block scriptlink %} {% endblock %}
         {{ encore_entry_link_tags('app') }}
     </head>
     <body>
