@@ -43,7 +43,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/home", name="app_home")
+     * @Route("/windy", name="app_windyCarte")
      */
     public function home()
     {
