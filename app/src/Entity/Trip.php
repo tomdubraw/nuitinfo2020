@@ -67,6 +67,12 @@ class Trip
      */
     private $pollutionCommentary;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Watterman::class, inversedBy="trips")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $waterman;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -188,6 +194,18 @@ class Trip
     public function setPollutionCommentary(?string $pollutionCommentary): self
     {
         $this->pollutionCommentary = $pollutionCommentary;
+
+        return $this;
+    }
+
+    public function getWaterman(): ?Watterman
+    {
+        return $this->waterman;
+    }
+
+    public function setWaterman(?Watterman $waterman): self
+    {
+        $this->waterman = $waterman;
 
         return $this;
     }
