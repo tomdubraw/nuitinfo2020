@@ -1,6 +1,6 @@
 const options = {
-    // Required: API key
-    key: 'nhMZCCAbIQeZEL97f0QPeLf16OkTLRgs', // REPLACE WITH YOUR KEY !!!
+    // API key à personaliser, elle marche en local host celle là.
+    key: 'nhMZCCAbIQeZEL97f0QPeLf16OkTLRgs',
 
     // Put additional console output
     verbose: true,
@@ -10,6 +10,7 @@ const options = {
     lon: 2.38690,
     zoom: 7,
 
+    // Paramètres divers
     timestamp: Date.now(),
     englishLabels: false,
     // lang : 'auto',
@@ -28,6 +29,7 @@ windyInit(options, windyAPI => {
     const {map} = windyAPI;
     // .map is instance of Leaflet map
 
+    // Pour mettre des commentaires sur la map   
     // L.popup()
     //     .setLatLng([48.76013, 2.38690])
     //     .setContent("Thiais c'est ici")
