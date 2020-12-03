@@ -27,6 +27,11 @@ class Organization
      */
     private $description;
 
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="organization", cascade={"persist", "remove"})
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,24 @@ class Organization
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newOrganization = null === $user ? null : $this;
+        if ($user->getOrganization() !== $newOrganization) {
+            $user->setOrganization($newOrganization);
+        }
 
         return $this;
     }

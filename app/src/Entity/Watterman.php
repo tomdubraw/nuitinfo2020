@@ -27,6 +27,11 @@ class Watterman
      */
     private $firstname;
 
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="waterman", cascade={"persist", "remove"})
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,24 @@ class Watterman
     public function setFirstname(string $firstname): self
     {
         $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newWaterman = null === $user ? null : $this;
+        if ($user->getWaterman() !== $newWaterman) {
+            $user->setWaterman($newWaterman);
+        }
 
         return $this;
     }
