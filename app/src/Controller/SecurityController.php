@@ -45,7 +45,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/windy", name="app_windyCarte")
      */
-    public function home()
+    public function windyRoute()
     {
         return $this->render('windyCarte/windyCarteFull.html.twig');
     }
