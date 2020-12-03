@@ -6,21 +6,30 @@ const options = {
     verbose: true,
 
     // Optional: Initial state of the map
-    lat: 50.4,
-    lon: 14.3,
-    zoom: 5,
+    lat: 48.76013,
+    lon: 2.38690,
+    zoom: 7,
+
+    timestamp: Date.now(),
+    englishLabels: false,
+    // lang : 'auto',
+    numDirection: true,
+    hourFormat: '24h',
+    graticule: false,
 };
+
 
 // Initialize Windy API
 windyInit(options, windyAPI => {
     // windyAPI is ready, and contain 'map', 'store',
-    // 'picker' and other usefull stuff
 
-    const { map } = windyAPI;
+    const {store} = windyAPI;
+
+    const {map} = windyAPI;
     // .map is instance of Leaflet map
 
-    L.popup()
-        .setLatLng([50.4, 14.3])
-        .setContent('Hello World')
-        .openOn(map);
+    // L.popup()
+    //     .setLatLng([48.76013, 2.38690])
+    //     .setContent("Thiais c'est ici")
+    //     .openOn(map);
 });

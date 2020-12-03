@@ -3,7 +3,7 @@
 {% block meta %}
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+        content="width=device-width, initial-scale=1.0, shrink-to-fit=yes"
         charset="UTF-8"
 />
 {% endblock %}
@@ -14,8 +14,9 @@
     <link rel="stylesheet">
     <style>
         #windy {
-            width: 1000px;
-            height: 1000px;
+            width: 100%;
+            height: 900px;
+            /*J'arrive pas à mettre le height */
         }
     </style>
 {% endblock %}
@@ -27,7 +28,9 @@
 
 {% block body %}
 <div class="container-fluid bg-white">
-    <div id="windy"></div>
-    {{ encore_entry_script_tags('windy') }}
+    <div class="row">
+        <div class="col" id="windy"></div>
+        {{ encore_entry_script_tags('windy') }}
+    </div>
 </div>
 {% endblock %}
