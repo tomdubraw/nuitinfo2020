@@ -37,10 +37,7 @@ class UserFixtures extends Fixture
     {
         $user = new User();
 
-        $user->setNickname("user$i");
-        $user->setEmail(sprintf('user%s@%s', $i, $this->faker->freeEmailDomain));
-        $user->setFirstname($this->faker->firstName);
-        $user->setLastname($this->faker->lastName);
+        $user->setEmail(sprintf('user%s@test.co', $i));
 
         $user->setPassword($this->encoder->encodePassword($user, 'Test1234'));
 
@@ -51,10 +48,7 @@ class UserFixtures extends Fixture
     {
         $user = new User();
 
-        $user->setNickname('admin');
-        $user->setEmail(sprintf('admin@%s', $this->faker->safeEmailDomain));
-        $user->setFirstname($this->faker->firstName);
-        $user->setLastname($this->faker->lastName);
+        $user->setEmail('admin@test.co');
         $user->setRoles(['ROLE_ADMIN']);
 
         $user->setPassword($this->encoder->encodePassword($user, 'Test1234'));
