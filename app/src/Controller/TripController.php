@@ -47,6 +47,8 @@ class TripController extends AbstractController
 
             $entityManager->persist($trip);
             $entityManager->flush();
+
+            return $this->redirectToRoute('root');
         }
 
         return $this->render('trip/create.html.twig', [
