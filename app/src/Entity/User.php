@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -43,6 +45,16 @@ class User implements UserInterface
      * @ORM\OneToOne(targetEntity=Watterman::class, inversedBy="user", cascade={"persist", "remove"})
      */
     private $waterman;
+
+    /**
+     * @ORM\OneToMany(targetEntity=FavCity::class, mappedBy="user")
+     */
+    private $favCities;
+
+    public function __construct()
+    {
+        $this->favCities = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -142,6 +154,36 @@ class User implements UserInterface
     public function setWaterman(?Watterman $waterman): self
     {
         $this->waterman = $waterman;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|FavCity[]
+     */
+    public function getFavCities(): Collection
+    {
+        return $this->favCities;
+    }
+
+    public function addFavCity(FavCity $favCity): self
+    {
+        if (!$this->favCities->contains($favCity)) {
+            $this->favCities[] = $favCity;
+            $favCity->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavCity(FavCity $favCity): self
+    {
+        if ($this->favCities->removeElement($favCity)) {
+            // set the owning side to null (unless already changed)
+            if ($favCity->getUser() === $this) {
+                $favCity->setUser(null);
+            }
+        }
 
         return $this;
     }

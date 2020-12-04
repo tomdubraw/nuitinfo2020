@@ -28,4 +28,12 @@ body {
   padding-bottom: 5em;
 }
 
+.navbut {
+  color: white !important;
+
+  &:hover {
+    color: $dark !important;
+  }
+}
+
 @import "windy/windy";
