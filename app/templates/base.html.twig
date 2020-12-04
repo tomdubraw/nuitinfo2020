@@ -12,17 +12,17 @@
     <body>
         {% block main %}
         <nav class="navbar navbar-expand fixed-top navbar-dark bg-secondary">
-            <a class="navbar-brand" href="#"><i class="fas fa-water mr-2"></i>SurferApp</a>
+            <a class="navbar-brand" href="{{ path('home') }}"><i class="fas fa-water mr-2"></i>SurferApp</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a href="#" class="nav-link d-flex align-items-center">
+                        <a href="{{ path('trip_create') }}" class="nav-link d-flex align-items-center">
                             <i class="fas fa-plus-square fa-2x"></i>
                             <span class="d-none d-md-inline d-lg-inline ml-2">Ajouter</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link d-flex align-items-center">
+                        <a href="{{ path('app_login') }}" class="nav-link d-flex align-items-center">
                             <i class="fas fa-sign-in-alt fa-2x"></i>
                             <span class="d-none d-md-inline d-lg-inline ml-2">Connexion</span>
                         </a>
