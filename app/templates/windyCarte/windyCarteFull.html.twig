@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block meta %}
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, shrink-to-fit=yes"
+        charset="UTF-8"
+/>
+{% endblock %}
+
+{% block title %}Ma grande carte!{% endblock %}
+
+{% block scriptlink%}
+{#    Imports pour la carte, les deux sont néccéssaires#}
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+    <script src="https://api.windy.com/assets/map-forecast/libBoot.js"></script>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid bg-white">
+    <div class="row">
+        <div id="windy" class="col"></div>
+        {{ encore_entry_script_tags('windy') }}
+    </div>
+</div>
+{% endblock %}
