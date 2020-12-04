@@ -10,7 +10,7 @@ class OpenDataController extends AbstractController
     /**
      * @Route("/openData", name="app_openData")
      */
-    public function windyRoute()
+    public function openDataRoute()
     {
         return $this->render('openData/openData.html.twig');
     }
