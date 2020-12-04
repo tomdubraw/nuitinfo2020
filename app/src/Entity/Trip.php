@@ -40,11 +40,6 @@ class Trip
     /**
      * @ORM\Column(type="integer")
      */
-    private $boatNumber;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
     private $fishingBoat;
 
     /**
@@ -122,18 +117,6 @@ class Trip
     public function setBatherNumber(int $batherNumber): self
     {
         $this->batherNumber = $batherNumber;
-
-        return $this;
-    }
-
-    public function getBoatNumber(): ?int
-    {
-        return $this->boatNumber;
-    }
-
-    public function setBoatNumber(int $boatNumber): self
-    {
-        $this->boatNumber = $boatNumber;
 
         return $this;
     }
