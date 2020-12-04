@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil - SurferApp{% endblock %}
+
+{% block body %}
+
+    <div class="text-center">
+        <h1>Profil</h1>
+    </div>
+
+    <div class="container">
+
+        <div class="row font-weight-bold my-5">
+            <div class="col-sm-2">
+                Lieu
+            </div>
+            <div class="col-sm-2">
+                Début de séance
+            </div>
+            <div class="col-sm-2">
+                Fin de séance
+            </div>
+            <div class="col-sm-4">
+                Observations
+            </div>
+            <div class="col-sm-2">
+                Plus d'infos
+            </div>
+        </div>
+
+        {% for trip in trips %}
+            <div class="row">
+                <div class="col-sm-2">
+                    {{ trip.city }}
+                </div>
+                <div class="col-sm-2">
+                    {{ trip.starttime | format_datetime('short', 'short', locale='fr') }}
+                </div>
+                <div class="col-sm-2">
+                    {{ trip.endtime | format_datetime('short', 'short', locale='fr') }}
+                </div>
+                <div class="col-sm-4">
+                    {{ trip.pollutionCommentary }}
+                </div>
+                <div class="col-sm-2">
+                    <a href="{{ path('trip_info', {'id': trip.id}) }}"><i class="fas fa-info-circle fa-2x"></i></a>
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+
+        <div class="row justify-content-center mb-5">
+            {{ knp_pagination_render(trips) }}
+        </div>
+
+    </div>
+
+{% endblock %}

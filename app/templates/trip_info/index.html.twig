@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Informations sur un trip - SurferApp{% endblock %}
+
+{% block body %}
+    <div class="text-center">
+        <h2>Informations sur un trip</h2>
+        <h3>{{ trip.starttime | format_datetime('short', 'none', locale='fr') }} - {{ trip.endtime | format_datetime('short', 'none', locale='fr') }}</h3>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6 d-flex justify-content-center text-center">
+                <span class="mr-1 font-weight-bold">Lieu : </span> {{ trip.city }}
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6 d-flex justify-content-center text-center">
+                <span class="mr-1 font-weight-bold">Début de la séance : </span> {{ trip.starttime | format_datetime('full', 'short', locale='fr') }}
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6 d-flex justify-content-center text-center">
+                <span class="mr-1 font-weight-bold">Fin de la séance : </span>{{ trip.endtime | format_datetime('full', 'short', locale='fr') }}
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6 d-flex justify-content-center text-center">
+                <span class="mr-1 font-weight-bold">Nombre de baigneurs : </span>{{ trip.batherNumber }}
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6 d-flex justify-content-center text-center">
+                <span class="mr-1 font-weight-bold">Nombre de surfeurs : </span>{{ trip.surferNumber }}
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6 d-flex justify-content-center text-center">
+                <span class="mr-1 font-weight-bold">Nombre de bateaux de pêche : </span>{{ trip.fishingBoat }}
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6 d-flex justify-content-center text-center">
+                <span class="mr-1 font-weight-bold">Nombre de bateaux de plaisance : </span>{{ trip.pleasureBoat }}
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6 d-flex justify-content-center text-center">
+                <span class="mr-1 font-weight-bold">Nombre de bateaux à voile : </span>{{ trip.sailboat }}
+            </div>
+        </div>
+
+        {% if trip.pollutionCommentary != '' %}
+            <div class="row d-flex justify-content-center mt-3">
+                <div class="col-md-6 d-flex justify-content-center text-center">
+                     <span class="mr-1 font-weight-bold">Observations : </span>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-6 d-flex justify-content-center text-center">
+                    {{ trip.pollutionCommentary }}
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="row d-flex justify-content-center mt-5">
+            <div class="col-md-6 d-flex justify-content-center text-center">
+                <a class="btn btn-primary px-5" href="{{ path('profil') }}">Retour</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
