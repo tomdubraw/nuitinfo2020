@@ -66,4 +66,20 @@ PhpStorm Configuration
 
 ## Prod
 
-use `docker-compose.prod.yml`
+First usage
+```sh
+docker-compose -f docker-compose.prod.yml up -d
+# wait the databse initialisation
+docker-compose -f docker-compose.prod.yml exec php composer db
+```
+
+Server listen on http://localhost:8080
+
+> You can change port inside `docker-compose.prod.yml`  
+> A traefik template is provided in `docker-compose.prod.yml`
+
+Update
+```sh
+docker-compose -f docker-compose.prod.yml build
+docker-compose -f docker-compose.prod.yml down && docker-compose -f docker-compose.prod.yml up -d
+```
