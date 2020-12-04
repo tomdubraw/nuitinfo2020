@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
+        {% block meta %}
+            <meta charset="UTF-8">
+        {% endblock %}
         <title>{% block title %}My App{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
+        {% block scriptlink %} {% endblock %}
         {{ encore_entry_link_tags('app') }}
         <nav class="navbar navbar-expand fixed-top navbar-dark bg-secondary">
             <a class="navbar-brand" href="#"><i class="fas fa-water mr-2"></i>SurferApp</a>
