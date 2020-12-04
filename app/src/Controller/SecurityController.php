@@ -3,13 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\Register2Type;
 use App\Form\RegisterType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -42,7 +43,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/signin", name="app_signin")
      */
-    public function signin(EntityManagerInterface $entityManager, Request $request, PasswordEncoderInterface $encoder)
+    public function signin(EntityManagerInterface $entityManager, Request $request, UserPasswordEncoderInterface $encoder)
     {
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
@@ -52,7 +53,7 @@ class SecurityController extends AbstractController
             /** @var User $user */
             $user = $form->getData();
 
-            $user->setPassword($encoder->encodePassword($user->getPassword(), $user));
+            $user->setPassword($encoder->encodePassword($user,$user->getPassword()));
 
             $entityManager->persist($user);
             $entityManager->flush();
@@ -62,6 +63,32 @@ class SecurityController extends AbstractController
 
         return $this->render('security/signin.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/signin_assoc", name="app_signin_assoc")
+     */
+    public function signin_assoc(EntityManagerInterface $entityManager, Request $request, UserPasswordEncoderInterface $encoder)
+    {
+        $user = new User();
+        $form = $this->createForm(Register2Type::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var User $user */
+            $user = $form->getData();
+
+            $user->setPassword($encoder->encodePassword($user,$user->getPassword()));
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('security/signin_assoc.html.twig', [
+            'form2' => $form->createView(),
         ]);
     }
 
