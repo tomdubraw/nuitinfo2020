@@ -96,6 +96,7 @@
             "@auto-scripts"
         ],
         "db": "bin/console doctrine:database:drop --force && bin/console d:d:c && bin/console d:s:u -f && bin/console d:f:l -n",
+        "db-prod": "bin/console doctrine:database:drop --force && bin/console d:d:c && bin/console d:s:u -f",
         "cs": "./vendor/bin/php-cs-fixer fix"
     },
     "conflict": {
