@@ -1,9 +1,12 @@
 # Nuit Info 2020
+
 [www.nuitdelinfo.com](https://www.nuitdelinfo.com)
 
 
 Voici le site que nous avons réalisé durant cette édition 2020 de la nuit de l'info. 
+
 Nous avons essayé de nous mettre dans la peau d'un pratiquant de sport notique ainsi que dans la peau des différentes associations afin de rendre l'application la plus intuitive et facile d'utilisation.
+
 Nous avons décidé de divisé en 2 parties notre application :
 
  	- Une partie accessible aux pratiquants (surfeur, nageur,...), ou ces derniers peuvent observer les données métérologiques afin de plannifier au mieux leurs sorties.
@@ -12,7 +15,8 @@ Nous avons décidé de divisé en 2 parties notre application :
 	- Une partie accessible aux associations (surfider,...), qui va ainsi leur permettre d'accèder à une map qui regroupe tous les endroits signalés par les surfeurs ainsi que toutes les informations récupérées via différentes sources.
 
 
-Le site est disponible à cette adresse : (https://segfault.ovh)[https://segfault.ovh]
+Le site est disponible à cette adresse : [https://segfault.ovh](https://segfault.ovh)
+
 Notre repertoire est disponible sur gitHub : https://github.com/tomdubraw/nuitinfo2020/
 
 Vous pouvez nous contacter à cette adresse mail: guillaumesol17@gmail.com
@@ -20,6 +24,7 @@ Vous pouvez nous contacter à cette adresse mail: guillaumesol17@gmail.com
 En espérant que notre code vous satisfera ! :) 
 
 PS : Nous avons caché une fonctionnalitée leet speek sur notre site, qui comporte 2 niveaux différents. Pour les curieux, vous pouvez la cherché (même si elle reste bien cachée ;) ).
+
 Pour les autres voici la façon de l'activer :
 
  - ?leet à la fin de l'url
