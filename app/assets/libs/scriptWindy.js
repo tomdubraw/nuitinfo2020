@@ -81,7 +81,7 @@ function ajouterPoint(dicoPoint) {
 var listeTestPoint = [];
 
 // Initialize Windy API
-windyInit(options, windyAPI => {
+windyInit(options, async windyAPI => {
     // windyAPI is ready, and contain 'map', 'store',
 
     const {store} = windyAPI;
@@ -101,23 +101,18 @@ windyInit(options, windyAPI => {
             .then(e => L.latLng(Number(e[0].lat), Number(e[0].lon)));
     }
 
-    function loadMarker(url, getCoord, getDesc) {
-        fetch(url)
+    function loadMarker() {
+        return fetch("/favcities")
             .then(r => r.json())
             .then(data => {
-                Promise.all(data.map(async entry => {
-                    return [await getCoord(entry)];
+                return Promise.all(data.map(async entry => {
+                    const c = await getCoordFromAddress(entry.city);
+                    return {'lat': c.lat, 'lon': c.lon, 'content': entry.city};
                 }));
             });
     }
 
-    loadMarker(
-        "/favcities",
-        e => getCoordFromAddress(e.city),
-        () => null
-    );
-
-    for (point of listeTestPoint) {
+    for (point of await loadMarker()) {
         dp = distance([gl[0], gl[1]], [point['lat'], point['lon']]).toFixed(2);
         if(dp > 1000){
             str = "Votre empreinte Carbone est très mauvaise!"
