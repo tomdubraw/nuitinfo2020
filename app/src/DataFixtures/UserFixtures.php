@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\FavCity;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -27,6 +28,14 @@ class UserFixtures extends Fixture
 
         foreach (range(0, 20) as $i) {
             $user = $this->getNumberedUser($i);
+
+            foreach (['Paris', 'Reims', 'Berlin'] as $city) {
+                $fav = new FavCity();
+                $fav->setLabel($city);
+                $fav->setUser($user);
+                $manager->persist($fav);
+            }
+
             $manager->persist($user);
         }
 

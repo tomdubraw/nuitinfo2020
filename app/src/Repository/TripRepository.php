@@ -30,4 +30,13 @@ class TripRepository extends ServiceEntityRepository
             ->orderBy('t.endtime')
             ->getQuery();
     }
+
+    public function getCities()
+    {
+        return $this->createQueryBuilder('t')
+            ->select('t.city')
+            ->distinct()
+            ->getQuery()
+            ->getResult();
+    }
 }

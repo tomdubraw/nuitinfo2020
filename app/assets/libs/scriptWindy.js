@@ -19,6 +19,25 @@ const options = {
     graticule: false,
 };
 
+/**
+ *
+ * @param listeDePoints Array
+ * @param LL
+ * @param M
+ */
+function ajouterPoints(listeDePoints) {
+    var markers = new L.layerGroup(listeDePoints.map(element => ajouterPoint(element, L)));
+    return markers;
+}
+
+function ajouterPoint(dicoPoint){
+    return new L.marker([dicoPoint['lat'], dicoPoint['lon']]).bindPopup(dicoPoint['content'])
+}
+
+
+var listeTestPoint = [{'lat': 48.76013, 'lon': 2.38690, 'content': "ICI c'est Thiais"},
+    {'lat': 14.00336, 'lon': 120.59463, 'content': "L'île dans une île  dans une île"},
+    {'lat': 1.00336, 'lon': 10.59463, 'content': "Lol"}]
 
 // Initialize Windy API
 windyInit(options, windyAPI => {
@@ -29,9 +48,5 @@ windyInit(options, windyAPI => {
     const {map} = windyAPI;
     // .map is instance of Leaflet map
 
-    // Pour mettre des commentaires sur la map   
-    // L.popup()
-    //     .setLatLng([48.76013, 2.38690])
-    //     .setContent("Thiais c'est ici")
-    //     .openOn(map);
+    ajouterPoints(listeTestPoint).addTo(map);
 });
