@@ -80,13 +80,6 @@ function ajouterPoint(dicoPoint) {
 
 var listeTestPoint = [];
 
-fetch(route)
-    .then(response => response.json())
-    .then(json => {
-        // todo faire les points
-    });
-
-
 // Initialize Windy API
 windyInit(options, windyAPI => {
     // windyAPI is ready, and contain 'map', 'store',
@@ -96,6 +89,33 @@ windyInit(options, windyAPI => {
     const {map} = windyAPI;
     // .map is instance of Leaflet map
     var gl = geoLocBase(),str = "", dp = 0;
+
+    function getCoordFromAddress(address) {
+        const url = new URL("https://nominatim.openstreetmap.org/search");
+        url.searchParams.append("q", address);
+        url.searchParams.append("format", "json");
+        url.searchParams.append("limit", "1");
+
+        return fetch(url)
+            .then(r => r.json())
+            .then(e => L.latLng(Number(e[0].lat), Number(e[0].lon)));
+    }
+
+    function loadMarker(url, getCoord, getDesc) {
+        fetch(url)
+            .then(r => r.json())
+            .then(data => {
+                Promise.all(data.map(async entry => {
+                    return [await getCoord(entry)];
+                }));
+            });
+    }
+
+    loadMarker(
+        "/favcities",
+        e => getCoordFromAddress(e.city),
+        () => null
+    );
 
     for (point of listeTestPoint) {
         dp = distance([gl[0], gl[1]], [point['lat'], point['lon']]).toFixed(2);
