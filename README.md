@@ -12,7 +12,7 @@ Nous avons décidé de divisé en 2 parties notre application :
 	- Une partie accessible aux associations (surfider,...), qui va ainsi leur permettre d'accèder à une map qui regroupe tous les endroits signalés par les surfeurs ainsi que toutes les informations récupérées via différentes sources.
 
 
-Le site est disponible à cette adresse : https://segfault.ovh
+Le site est disponible à cette adresse : (https://segfault.ovh)[https://segfault.ovh]
 Notre repertoire est disponible sur gitHub : https://github.com/tomdubraw/nuitinfo2020/
 
 Vous pouvez nous contacter à cette adresse mail: guillaumesol17@gmail.com
