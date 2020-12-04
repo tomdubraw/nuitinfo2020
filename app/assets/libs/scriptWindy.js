@@ -83,9 +83,7 @@ var listeTestPoint = [];
 fetch(route)
     .then(response => response.json())
     .then(json => {
-        // listeTestPoint
-        // TODO : Parser le json
-
+        // todo faire les points
     });
 
 
