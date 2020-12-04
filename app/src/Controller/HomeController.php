@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +14,14 @@ class HomeController extends AbstractController
      */
     public function root()
     {
-        return $this->redirectToRoute('home');
+        /** @var User $user */
+        if (null === $user = $this->getUser()) {
+            return $this->redirectToRoute('home');
+        } elseif (null === $user->getOrganization()) {
+            return $this->redirectToRoute('app_openData');
+        } else {
+            return $this->redirectToRoute('app_windyCarte');
+        }
     }
 
     /**
