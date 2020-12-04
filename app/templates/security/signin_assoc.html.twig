@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création du compte{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {{ form_start(form2) }}
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <h1 class="text-center">Créé le profil de ton association</h1>
+
+                {{ form_row(form2.organization.name) }}
+
+                {{ form_row(form2.organization.description) }}
+
+                {{ form_row(form2.email) }}
+
+                {{ form_row(form2.password) }}
+            </div>
+            <div class="col-3"></div>
+        </div>
+
+        <div class="row">
+            <div class="col text-center">
+                <input class="btn btn-lg btn-primary mt-4" type="submit">
+            </div>
+        </div>
+        {{ form_end(form2) }}
+    </div>
+{% endblock %}
