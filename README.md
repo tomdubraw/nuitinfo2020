@@ -64,19 +64,20 @@ PhpStorm Configuration
 - Avoid to push into `master` and `dev`
 
 
-## Prod
+## Production
 
 First usage
 ```sh
 docker-compose -f docker-compose.prod.yml up -d
 # wait the databse initialisation
-docker-compose -f docker-compose.prod.yml exec php composer db
+docker-compose -f docker-compose.prod.yml exec php composer db-prod
 ```
 
 Server listen on http://localhost:8080
 
-> You can change port inside `docker-compose.prod.yml`  
-> A traefik template is provided in `docker-compose.prod.yml`
+> You can change port inside `docker-compose.prod.yml`
+
+> A [traefik](https://doc.traefik.io/traefik/) template is provided in `docker-compose.prod.yml`
 
 Update
 ```sh
