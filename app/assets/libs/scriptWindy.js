@@ -74,10 +74,19 @@ function ajouterPoint(dicoPoint) {
     return new L.marker([dicoPoint['lat'], dicoPoint['lon']]).bindPopup(dicoPoint['content'])
 }
 
-var listeTestPoint = [{'lat': 48.76013, 'lon': 2.38690, 'content': "ICI c'est Thiais!"},
-    {'lat': 14.00336, 'lon': 120.59463, 'content': "L'île dans une île  dans une île!"},
-    {'lat': 1.00336, 'lon': 10.59463, 'content': "Lol"}]
+// var listeTestPoint = [{'lat': 48.76013, 'lon': 2.38690, 'content': "ICI c'est Thiais!"},
+//     {'lat': 14.00336, 'lon': 120.59463, 'content': "L'île dans une île  dans une île!"},
+//     {'lat': 1.00336, 'lon': 10.59463, 'content': "Lol"}]
 
+var listeTestPoint = [];
+
+fetch(route)
+    .then(response => response.json())
+    .then(json => {
+        // listeTestPoint
+        // TODO : Parser le json
+
+    });
 
 
 // Initialize Windy API
