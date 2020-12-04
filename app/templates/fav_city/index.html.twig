@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello FavCityController!{% endblock %}
+{% block title %}Villes favorites - SurferApp{% endblock %}
 
 {% block body %}
     <div class="container">
-        <h2>Ville favorite</h2>
+        <h2>Villes favorites</h2>
 
         {{ form_start(form, {'action': path('fav_city_post')}) }}
-            {{ form_rest(form) }}
+            <div class="m-3">{{ form_widget(form.label) }}</div>
             <input type="submit" class="btn btn-primary">
         {{ form_end(form) }}
 
