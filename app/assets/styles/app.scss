@@ -23,4 +23,9 @@
  */
 // import partial with custom style
 
+body {
+  padding-top: 5em;
+  padding-bottom: 5em;
+}
+
 @import "windy/windy";
