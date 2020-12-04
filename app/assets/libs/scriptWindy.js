@@ -19,18 +19,58 @@ const options = {
     graticule: false,
 };
 
+function distance(position1, position2) {
+    var lat1 = position1[0], lon1 = position1[1], lat2 = position2[0], lon2 = position2[1];
+    if ((lat1 == lat2) && (lon1 == lon2)) {
+        return 0;
+    }
+    else {
+        var radlat1 = Math.PI * lat1/180;
+        var radlat2 = Math.PI * lat2/180;
+        var theta = lon1-lon2;
+        var radtheta = Math.PI * theta/180;
+        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        if (dist > 1) {
+            dist = 1;
+        }
+        dist = Math.acos(dist);
+        dist = dist * 180/Math.PI;
+        dist = dist * 60 * 1.1515;
+        dist = dist * 1.609344
+        return dist;
+    }
+}
+
+function geoLocBase() {
+    var ObjPosition = new ol.Feature();
+    var geolocation = new ol.Geolocation({
+        tracking: true,
+    });
+
+    var getPosition = [49.24046277613983, 4.061726162584737, "Ancien local de l'équipe StackOverflow Driven Development"];
+
+    try {
+        var gl = geolocation.getPosition();
+        getPosition[0] = gl[0];
+        getPosition[1] = gl[1];
+        getPosition[2] = "Votre Position";
+    } catch (error) {
+        console.log("Erreur de localisation!! ");
+    }
+
+    return getPosition;
+}
+
 /**
  *
  * @param listeDePoints Array
- * @param LL
- * @param M
  */
 function ajouterPoints(listeDePoints) {
     var markers = new L.layerGroup(listeDePoints.map(element => ajouterPoint(element, L)));
     return markers;
 }
 
-function ajouterPoint(dicoPoint){
+function ajouterPoint(dicoPoint) {
     return new L.marker([dicoPoint['lat'], dicoPoint['lon']]).bindPopup(dicoPoint['content'])
 }
 
@@ -47,6 +87,10 @@ windyInit(options, windyAPI => {
 
     const {map} = windyAPI;
     // .map is instance of Leaflet map
+    var gl = geoLocBase();
+    listeTestPoint.push({'lat': gl[0], 'lon': gl[1], 'content': gl[2]});
+
+    console.log("Distance Paris  Reims : " + distance([48.76013, 2.38690], [49.24046277613983, 4.061726162584737]))
 
     ajouterPoints(listeTestPoint).addTo(map);
 });
