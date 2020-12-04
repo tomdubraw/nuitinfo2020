@@ -18,9 +18,9 @@ class HomeController extends AbstractController
         if (null === $user = $this->getUser()) {
             return $this->redirectToRoute('home');
         } elseif (null === $user->getOrganization()) {
-            return $this->redirectToRoute('app_openData');
-        } else {
             return $this->redirectToRoute('app_windyCarte');
+        } else {
+            return $this->redirectToRoute('app_openData');
         }
     }
 
