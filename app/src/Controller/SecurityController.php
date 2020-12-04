@@ -16,14 +16,6 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/")
-     */
-    public function root()
-    {
-        return $this->redirectToRoute('app_login');
-    }
-
-    /**
      * @Route("/login", name="app_login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
@@ -43,8 +35,11 @@ class SecurityController extends AbstractController
     /**
      * @Route("/signin", name="app_signin")
      */
-    public function signin(EntityManagerInterface $entityManager, Request $request, UserPasswordEncoderInterface $encoder)
-    {
+    public function signin(
+        EntityManagerInterface $entityManager,
+        Request $request,
+        UserPasswordEncoderInterface $encoder
+    ) {
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
         $form->handleRequest($request);
@@ -53,7 +48,7 @@ class SecurityController extends AbstractController
             /** @var User $user */
             $user = $form->getData();
 
-            $user->setPassword($encoder->encodePassword($user,$user->getPassword()));
+            $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
 
             $entityManager->persist($user);
             $entityManager->flush();
@@ -79,7 +74,7 @@ class SecurityController extends AbstractController
             /** @var User $user */
             $user = $form->getData();
 
-            $user->setPassword($encoder->encodePassword($user,$user->getPassword()));
+            $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
 
             $entityManager->persist($user);
             $entityManager->flush();

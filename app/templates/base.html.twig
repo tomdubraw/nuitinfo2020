@@ -5,6 +5,7 @@
             <meta charset="UTF-8">
         {% endblock %}
         <title>{% block title %}My App{% endblock %}</title>
+        <link rel="icon" href="favicon.ico">
         {% block stylesheets %}{% endblock %}
         {% block scriptlink %} {% endblock %}
         {{ encore_entry_link_tags('app') }}
@@ -12,21 +13,44 @@
     <body>
         {% block main %}
         <nav class="navbar navbar-expand fixed-top navbar-dark bg-secondary">
-            <a class="navbar-brand" href="#"><i class="fas fa-water mr-2"></i>SurferApp</a>
+            <a class="navbar-brand" href="{{ path('home') }}"><i class="fas fa-water mr-2"></i>SurferApp</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link d-flex align-items-center">
-                            <i class="fas fa-plus-square fa-2x"></i>
-                            <span class="d-none d-md-inline d-lg-inline ml-2">Ajouter</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link d-flex align-items-center">
-                            <i class="fas fa-sign-in-alt fa-2x"></i>
-                            <span class="d-none d-md-inline d-lg-inline ml-2">Connexion</span>
-                        </a>
-                    </li>
+                    {% if app.user %}
+                        <li class="nav-item">
+                            <a href="{{ path('trip_create') }}" class="nav-link d-flex align-items-center navbut">
+                                <i class="fas fa-plus-square fa-2x"></i>
+                                <span class="d-none d-md-inline d-lg-inline ml-2">Ajouter</span>
+                            </a>
+                        </li>
+                        {% if app.user.organization == null %}
+                            <li class="nav-item">
+                                <a href="{{ path('fav_city') }}" class="nav-link d-flex align-items-center navbut">
+                                    <i class="fas fa-star fa-2x"></i>
+                                    <span class="d-none d-md-inline d-lg-inline ml-2">Favoris</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a href="{{ path('profil') }}" class="nav-link d-flex align-items-center navbut">
+                                <i class="fas fa-user-alt fa-2x"></i>
+                                <span class="d-none d-md-inline d-lg-inline ml-2">Profil</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('app_logout') }}" class="nav-link d-flex align-items-center navbut">
+                                <i class="fas fa-sign-out-alt fa-2x"></i>
+                                <span class="d-none d-md-inline d-lg-inline ml-2">Déconnexion</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{{ path('app_login') }}" class="nav-link d-flex align-items-center navbut">
+                                <i class="fas fa-sign-in-alt fa-2x"></i>
+                                <span class="d-none d-md-inline d-lg-inline ml-2">Connexion</span>
+                            </a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
