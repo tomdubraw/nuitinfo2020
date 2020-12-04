@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Trip;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,13 +20,23 @@ class TripRepository extends ServiceEntityRepository
         parent::__construct($registry, Trip::class);
     }
 
+    public function getTripByUserQuery(User $user)
+    {
+        return $this->createQueryBuilder('t')
+            ->join('t.waterman', 'w')
+            ->join('w.user', 'u')
+            ->andWhere('u.id = :user')
+            ->setParameter('user', $user)
+            ->orderBy('t.endtime')
+            ->getQuery();
+    }
+
     public function getCities()
     {
         return $this->createQueryBuilder('t')
             ->select('t.city')
             ->distinct()
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
 }
