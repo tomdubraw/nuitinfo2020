@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -38,18 +39,21 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
-
     /**
      * @Route("/signin", name="app_signin")
      */
-    public function signin(EntityManagerInterface $entityManager,Request $request)
+    public function signin(EntityManagerInterface $entityManager, Request $request, PasswordEncoderInterface $encoder)
     {
         $user = new User();
-        $form = $this->createForm(RegisterType::class,$user);
+        $form = $this->createForm(RegisterType::class, $user);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var User $user */
             $user = $form->getData();
+
+            $user->setPassword($encoder->encodePassword($user->getPassword(), $user));
+
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -57,7 +61,7 @@ class SecurityController extends AbstractController
         }
 
         return $this->render('security/signin.html.twig', [
-            'form'=> $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
