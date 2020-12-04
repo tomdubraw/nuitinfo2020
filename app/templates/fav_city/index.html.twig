@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FavCityController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2>Ville favorite</h2>
+
+        {{ form_start(form, {'action': path('fav_city_post')}) }}
+            {{ form_rest(form) }}
+            <input type="submit" class="btn btn-primary">
+        {{ form_end(form) }}
+
+        <ul class="m-5">
+            {% for fav in favs %}
+                <li class="m-2">
+                    {{ fav.label }}
+                    <a class="btn btn-danger" href="{{ path('fav_city_delete', {'fav': fav.id}) }}"><i class="fas fa-trash-alt"></i></a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
