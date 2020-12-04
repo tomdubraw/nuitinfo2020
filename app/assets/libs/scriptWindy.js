@@ -47,7 +47,7 @@ function geoLocBase() {
         tracking: true,
     });
 
-    var getPosition = [49.24046277613983, 4.061726162584737, "Ancien local de l'équipe StackOverflow Driven Development"];
+    var getPosition = [49.24046277613983, 4.061726162584737, "Ancien local de l'équipe StackOverflow Driven Development..."];
 
     try {
         var gl = geolocation.getPosition();
@@ -74,10 +74,11 @@ function ajouterPoint(dicoPoint) {
     return new L.marker([dicoPoint['lat'], dicoPoint['lon']]).bindPopup(dicoPoint['content'])
 }
 
-
-var listeTestPoint = [{'lat': 48.76013, 'lon': 2.38690, 'content': "ICI c'est Thiais"},
-    {'lat': 14.00336, 'lon': 120.59463, 'content': "L'île dans une île  dans une île"},
+var listeTestPoint = [{'lat': 48.76013, 'lon': 2.38690, 'content': "ICI c'est Thiais!"},
+    {'lat': 14.00336, 'lon': 120.59463, 'content': "L'île dans une île  dans une île!"},
     {'lat': 1.00336, 'lon': 10.59463, 'content': "Lol"}]
+
+
 
 // Initialize Windy API
 windyInit(options, windyAPI => {
@@ -87,10 +88,23 @@ windyInit(options, windyAPI => {
 
     const {map} = windyAPI;
     // .map is instance of Leaflet map
-    var gl = geoLocBase();
-    listeTestPoint.push({'lat': gl[0], 'lon': gl[1], 'content': gl[2]});
+    var gl = geoLocBase(),str = "", dp = 0;
 
-    console.log("Distance Paris  Reims : " + distance([48.76013, 2.38690], [49.24046277613983, 4.061726162584737]))
+    for (point of listeTestPoint) {
+        dp = distance([gl[0], gl[1]], [point['lat'], point['lon']]).toFixed(2);
+        if(dp > 1000){
+            str = "Votre empreinte Carbone est très mauvaise!"
+        }else if (dp > 500){
+            str = "Votre empreinte Carbone est mauvaise."
+        }else if (dp > 100){
+            str = "Votre empreinte Carbone est moyenne."
+        }else{
+            str = "Votre empreinte Carbone est bonne!"
+        }
+        point['content'] += " Distance de la position: " +dp + "Km.  " + str;
+    }
+
+    listeTestPoint.push({'lat': gl[0], 'lon': gl[1], 'content': gl[2]});
 
     ajouterPoints(listeTestPoint).addTo(map);
 });
